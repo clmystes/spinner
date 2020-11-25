@@ -23,9 +23,9 @@ type Spinner struct {
 func New(text string) *Spinner {
 	frames := []rune(Dots)
 	s := &Spinner{
-		text:   text,
-		frames: frames,
-		length: len(frames),
+		text:     text,
+		frames:   frames,
+		length:   len(frames),
 		stopChan: make(chan struct{}, 1),
 	}
 	return s
