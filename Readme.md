@@ -13,7 +13,7 @@ $ go get github.com/clmystes/spinner
 ## Example
 
 ```go
-s := spinner.New("Processing staff...")
+s := spinner.New("Processing stuff...")
 s.Start()
 ```
 

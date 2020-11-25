@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	s := spinner.New("Processing staff...")
+	s := spinner.New("Processing stuff...")
 	s.Start()
 	time.Sleep(1000 * time.Millisecond)
 	s.Stop()
