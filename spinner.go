@@ -6,11 +6,11 @@ import (
 	"time"
 )
 
-var Dots = `⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏`
+var dots = `⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏`
 
 // Spinner type
 type Spinner struct {
-	text     string // Text to display before the spinner.
+	Text     string // Text to display before the spinner.
 	mu       sync.Mutex
 	frames   []rune
 	length   int
@@ -21,9 +21,9 @@ type Spinner struct {
 
 // New returns spinner instance
 func New(text string) *Spinner {
-	frames := []rune(Dots)
+	frames := []rune(dots)
 	s := &Spinner{
-		text:     text,
+		Text:     text,
 		frames:   frames,
 		length:   len(frames),
 		stopChan: make(chan struct{}, 1),
@@ -48,7 +48,7 @@ func (s *Spinner) Start() {
 				fmt.Print("\r\033[K")
 				return
 			default:
-				fmt.Printf("\r%s %s", s.Next(), s.text)
+				fmt.Printf("\r%s %s", s.Next(), s.Text)
 				time.Sleep(100 * time.Millisecond)
 			}
 		}
@@ -65,6 +65,8 @@ func (s *Spinner) Stop() {
 	}
 
 	s.stopChan <- struct{}{}
+	close(s.stopChan)
+	fmt.Print("\r\033[K")
 	s.spinning = false
 }
 
